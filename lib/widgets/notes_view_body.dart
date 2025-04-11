@@ -24,7 +24,7 @@ class _NotesViewBodyState extends State<NotesViewBody> {
       padding: EdgeInsets.only(right: 24, left: 24, top: 40),
       child: Column(
         children: [
-          CustomAppBar(title: 'Notes', icon: Icons.search),
+          CustomAppBar(title: 'Notes'),
           Expanded(child: NotesListBuilder()),
         ],
       ),

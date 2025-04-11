@@ -27,12 +27,24 @@ class _EditNoteBodyState extends State<EditNoteBody> {
           CustomAppBar(
             title: 'Edit',
             icon: Icons.check,
+            color: Colors.white.withAlpha(15),
             onPressed: () {
               widget.note.title = title ?? widget.note.title;
               widget.note.content = content ?? widget.note.content;
               widget.note.save();
               BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text("Note updated successfully!"),
+                  duration: Duration(milliseconds: 1),
+                ),
+              );
+              Future.delayed(const Duration(milliseconds: 500), () {
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+              });
             },
           ),
           const SizedBox(height: 8),
